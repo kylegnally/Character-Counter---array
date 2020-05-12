@@ -23,7 +23,7 @@ namespace Character_Counter___array
         /// <summary>
         /// The required array of CharacterFrequency objects.
         /// </summary>
-        private CharacterFrequency[] _CharacterFrequencyObjectArray;
+        private CharacterFrequency[] _characterFrequencyObjectArray;
         public CharacterFrequency[] CharacterFrequencyObjectArray { get; set; }
 
         ///// <summary>
@@ -39,7 +39,7 @@ namespace Character_Counter___array
         public CounterManager(string[] args)
         {
             TheUserInterface = new UserInterface();
-            _CharacterFrequencyObjectArray = CharacterFrequencyObjectArray;
+            _characterFrequencyObjectArray = CharacterFrequencyObjectArray;
             if (args.Length > 1)
             {
                 // ordinarily we would allow for writing of the finished product to a file.
@@ -131,10 +131,9 @@ namespace Character_Counter___array
                 if (characterFrequencyObject.Equals(aChar)) characterFrequencyObject.IncrementFrequency();
                 else
                 {
-                    CharacterFrequencyObjectArray[i] = new CharacterFrequency(aChar);
-                    i++;
+                    CharacterFrequencyObjectArray[i] = characterFrequencyObject;
                 }
-
+                i++;
             }
 
             //// we're going to need to count the number of times 

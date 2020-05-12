@@ -44,7 +44,14 @@ namespace Character_Counter___array
 
         public void DisplayOutput(CharacterFrequency[] freqArray)
         {
-            // Output = Convert(freqArray);
+            foreach (CharacterFrequency oneCharFreqObj in freqArray)
+            {
+                var storedChar = oneCharFreqObj.Character;
+                Output = String.Format("{0}\t{1}\t{2}",
+                    oneCharFreqObj.Character.ToString(),
+                    (int) storedChar,
+                    oneCharFreqObj.Frequency.ToString());
+            }
             Console.WriteLine("End of program.");
             Environment.Exit(0);
         }
