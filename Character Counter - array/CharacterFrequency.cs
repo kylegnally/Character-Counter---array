@@ -15,6 +15,8 @@ namespace Character_Counter___array
 
         public int Frequency { get; set; }
 
+        public CharacterFrequency() { }
+
         public CharacterFrequency(char charToCheck)
         {
             _character = charToCheck;
@@ -37,9 +39,14 @@ namespace Character_Counter___array
             return false;
         }
 
-        private void IncrementFrequency()
+        public void IncrementFrequency()
         {
             Frequency++;
+        }
+
+        public override string ToString()
+        {
+            return Character.ToString();
         }
     }
 }

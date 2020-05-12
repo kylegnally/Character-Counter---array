@@ -8,7 +8,7 @@ namespace Character_Counter___array
         /// <summary>
         /// Exception Legerdemain for use in a switch in the UserInterface class.
         /// </summary>
-        private Type ex; 
+        private Type ex;
 
         /// <summary>
         /// The user interface. In this program it doesn't handle any user input. 
@@ -21,15 +21,16 @@ namespace Character_Counter___array
         private string CurrentDir { get; }
 
         /// <summary>
-        /// The final array of required CharacterFrequency objects.
+        /// The required array of CharacterFrequency objects.
         /// </summary>
+        private CharacterFrequency[] _CharacterFrequencyObjectArray;
         public CharacterFrequency[] CharacterFrequencyObjectArray { get; set; }
 
-        /// <summary>
-        /// An array to store a running count of the number of times each letter
-        /// in the alphabet appears. Remember- arrays start at 0, so 
-        /// </summary>
-        public int[] DuplicateLetterArray { get; }
+        ///// <summary>
+        ///// An array to store a running count of the number of times each letter
+        ///// in the alphabet appears. Remember- arrays start at 0, so 
+        ///// </summary>
+        //public int[] DuplicateLetterArray { get; }
 
         /// <summary>
         /// Constructor for the CounterManager class. 
@@ -38,9 +39,7 @@ namespace Character_Counter___array
         public CounterManager(string[] args)
         {
             TheUserInterface = new UserInterface();
-            int[] duplicateCountArray = new int[26];
-            DuplicateLetterArray = duplicateCountArray;
-
+            _CharacterFrequencyObjectArray = CharacterFrequencyObjectArray;
             if (args.Length > 1)
             {
                 // ordinarily we would allow for writing of the finished product to a file.
@@ -122,14 +121,20 @@ namespace Character_Counter___array
 
         private void HandleTheFile(char[] chars)
         {
+            int i = 0;
             // let's assume someone's file is just the alphabet. We'll need an array
             // that can hold at least one of each letter, but we definitely will not
             // need less than that
-            CharacterFrequency[] CharacterFrequencyObjectArray = new CharacterFrequency[26];
-
+            CharacterFrequency characterFrequencyObject = new CharacterFrequency();
             foreach (char aChar in chars)
             {
-                CharacterFrequency aCharacter = new CharacterFrequency(aChar);
+                if (characterFrequencyObject.Equals(aChar)) characterFrequencyObject.IncrementFrequency();
+                else
+                {
+                    CharacterFrequencyObjectArray[i] = new CharacterFrequency(aChar);
+                    i++;
+                }
+
             }
 
             //// we're going to need to count the number of times 
