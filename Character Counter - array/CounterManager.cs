@@ -80,7 +80,7 @@ namespace Character_Counter___array
                         string fullPath = CurrentDir + "\\" + args[0];
                         using (StreamReader reader = new StreamReader(fullPath))
                         {
-                            Process(reader);
+                            ProcessFile(reader);
                         }
                     }
                     catch
@@ -112,11 +112,12 @@ namespace Character_Counter___array
         /// Method to process the input file.
         /// </summary>
         /// <param name="file"></param>
-        private void Process(StreamReader file)
+        private void ProcessFile(StreamReader file)
         {
             char[] chars;
             string contents = file.ReadToEnd();
             chars = contents.ToCharArray();
+            HandleTheFile(chars);
         }
 
         private void HandleTheFile(char[] chars)
@@ -135,6 +136,7 @@ namespace Character_Counter___array
                 }
                 i++;
             }
+            TheUserInterface.DisplayOutput(CharacterFrequencyObjectArray);
 
             //// we're going to need to count the number of times 
             //// each letter in the alphabet appears. 
