@@ -126,9 +126,10 @@ namespace Character_Counter___array
             // let's assume someone's file is just the alphabet. We'll need an array
             // that can hold at least one of each letter, but we definitely will not
             // need less than that
-            CharacterFrequency characterFrequencyObject = new CharacterFrequency();
+            
             foreach (char aChar in chars)
             {
+                CharacterFrequency characterFrequencyObject = new CharacterFrequency();
                 if (characterFrequencyObject.Equals(aChar)) characterFrequencyObject.IncrementFrequency();
                 else
                 {
