@@ -32,10 +32,6 @@ namespace Character_Counter___array
             {
                 return true;
             }
-            else
-            {
-                CharacterFrequency aCharacter = new CharacterFrequency(charToCheck);
-            }
             return false;
         }
 
