@@ -23,8 +23,8 @@ namespace Character_Counter___array
         /// <summary>
         /// The required array of CharacterFrequency objects.
         /// </summary>
-        private CharacterFrequency[] _characterFrequencyObjectArray;
-        public CharacterFrequency[] CharacterFrequencyObjectArray { get; set; }
+
+        public CharacterFrequency[] CharacterFrequencyObjectArray;
 
         ///// <summary>
         ///// An array to store a running count of the number of times each letter
@@ -39,7 +39,7 @@ namespace Character_Counter___array
         public CounterManager(string[] args)
         {
             TheUserInterface = new UserInterface();
-            _characterFrequencyObjectArray = CharacterFrequencyObjectArray;
+            CharacterFrequencyObjectArray = new CharacterFrequency[26];
             if (args.Length > 1)
             {
                 // ordinarily we would allow for writing of the finished product to a file.

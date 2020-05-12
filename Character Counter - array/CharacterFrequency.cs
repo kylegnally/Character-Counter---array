@@ -10,16 +10,22 @@ namespace Character_Counter___array
 {
     class CharacterFrequency
     {
-        char _character;
+        private char _character;
+        private int _frequency;
         public char Character { get; set; }
 
-        public int Frequency { get; set; }
+        public int Frequency
+        {
+            get => _frequency;
+            set => _frequency = value;
+        }
 
         public CharacterFrequency() { }
 
         public CharacterFrequency(char charToCheck)
         {
             _character = charToCheck;
+            _frequency = 1;
             if (Equals(charToCheck))
             {
                 IncrementFrequency();
