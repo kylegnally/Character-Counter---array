@@ -125,28 +125,48 @@ namespace Character_Counter___array
             CharacterFrequencyObjectArray = new CharacterFrequency[127];
             char[] charsInFile = chars;
             var freq = new int[25];
-            for (int i = 0; i < chars.Length; i++)
+            //for (int i = 0; i < chars.Length; i++)
+            int i = 0;
+            char oneChar = chars[i];
+            
+            while (chars.Length > 0)
             {
-                char oneChar = chars[i];
                 CharacterFrequency characterFrequencyObject = new CharacterFrequency(oneChar);
                 CharacterFrequencyObjectArray[i] = characterFrequencyObject;
-
-                try
+                Console.Write(chars[0] + " = ");
+                int cal = 0;
+                for (int j = 0; j < chars.Length; j++)
                 {
-                    ++freq[charsInFile[i]];
-                    characterFrequencyObject.IncrementFrequency(freq, i);
-
+                    if (chars[0] == chars[j])
+                    {
+                        cal++;
+                        i++;
+                        characterFrequencyObject.IncrementFrequency(cal);
+                    }
                 }
-                catch (IndexOutOfRangeException ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-                
             }
-                
-               
-            
             TheUserInterface.DisplayOutput(CharacterFrequencyObjectArray);
+
+            //{
+            //    char oneChar = chars[i];
+            //    CharacterFrequency characterFrequencyObject = new CharacterFrequency(oneChar);
+            //    CharacterFrequencyObjectArray[i] = characterFrequencyObject;
+
+            //    try
+            //    {
+            //        ++freq[charsInFile[i]];
+            //        characterFrequencyObject.IncrementFrequency(freq, i);
+
+            //    }
+            //    catch (IndexOutOfRangeException ex)
+            //    {
+            //        Console.WriteLine(ex.Message);
+            //    }
+
+            //}
+
+
+
         }
     }
 }
