@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Character_Counter___array
@@ -39,7 +40,6 @@ namespace Character_Counter___array
         public CounterManager(string[] args)
         {
             TheUserInterface = new UserInterface();
-            CharacterFrequencyObjectArray = new CharacterFrequency[26];
             if (args.Length > 1)
             {
                 // ordinarily we would allow for writing of the finished product to a file.
@@ -48,7 +48,7 @@ namespace Character_Counter___array
                 // time in the future when running this version of the program.
                 ex = typeof(UnsupportedArgsException);
                 TheUserInterface.ExceptionMessageOutput(ex);
-                
+
                 // now we'll create the args array, newArgs
                 string[] newArgs = new string[1];
 
@@ -122,40 +122,31 @@ namespace Character_Counter___array
 
         private void HandleTheFile(char[] chars)
         {
-            int i = 0;
-            // let's assume someone's file is just the alphabet. We'll need an array
-            // that can hold at least one of each letter, but we definitely will not
-            // need less than that
-            
-            foreach (char aChar in chars)
+            CharacterFrequencyObjectArray = new CharacterFrequency[127];
+            char[] charsInFile = chars;
+            var freq = new int[25];
+            for (int i = 0; i < chars.Length; i++)
             {
-                CharacterFrequency characterFrequencyObject = new CharacterFrequency();
-                if (characterFrequencyObject.Equals(aChar)) characterFrequencyObject.IncrementFrequency();
-                else
+                char oneChar = chars[i];
+                CharacterFrequency characterFrequencyObject = new CharacterFrequency(oneChar);
+                CharacterFrequencyObjectArray[i] = characterFrequencyObject;
+
+                try
                 {
-                    CharacterFrequencyObjectArray[i] = characterFrequencyObject;
+                    ++freq[charsInFile[i]];
+                    characterFrequencyObject.IncrementFrequency(freq, i);
+
                 }
-                i++;
+                catch (IndexOutOfRangeException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                
             }
+                
+               
+            
             TheUserInterface.DisplayOutput(CharacterFrequencyObjectArray);
-
-            //// we're going to need to count the number of times 
-            //// each letter in the alphabet appears. 
-            //int[] duplicateCountArray = new int[26];
-
-            ////FinalFrequencyArray = new CharacterFrequency[chars.Length];
-            //int i = 0;
-            //foreach (char aCharacter in chars)
-            //{
-            //    if (chars[0] == '\0') { }
-            //    {
-            //        int alphabetPosition = (int) aCharacter % 32;
-            //        DuplicateLetterArray[alphabetPosition]++;
-            //        if (DuplicateLetterArray[alphabetPosition] == 0) FinalFrequencyArray[i] = new CharacterFrequency(aCharacter);
-            //        i++;
-            //    }
-            //}
-            //Console.WriteLine("Characters have been set into array.");
         }
     }
 }

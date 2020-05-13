@@ -10,26 +10,15 @@ namespace Character_Counter___array
 {
     class CharacterFrequency
     {
-        private char _character;
-        private int _frequency;
         public char Character { get; set; }
 
-        public int Frequency
-        {
-            get => _frequency;
-            set => _frequency = value;
-        }
+        public int Frequency { get; set; }
 
         public CharacterFrequency() { }
 
         public CharacterFrequency(char charToCheck)
         {
-            _character = charToCheck;
-            _frequency = 1;
-            if (Equals(charToCheck))
-            {
-                IncrementFrequency();
-            }
+            Character = charToCheck;
         }
 
         public bool Equals(char charToCheck)
@@ -38,12 +27,16 @@ namespace Character_Counter___array
             {
                 return true;
             }
+            else
+            {
+                Character = Character;
+            }
             return false;
         }
 
-        public void IncrementFrequency()
+        public void IncrementFrequency(int[] freq, int i)
         {
-            Frequency++;
+            Frequency = Frequency + freq[i];
         }
 
         public override string ToString()
