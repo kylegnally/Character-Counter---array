@@ -27,6 +27,7 @@ namespace Character_Counter___array
 
         public CharacterFrequency[] CharacterFrequencyObjectArray;
 
+
         ///// <summary>
         ///// An array to store a running count of the number of times each letter
         ///// in the alphabet appears. Remember- arrays start at 0, so 
@@ -122,50 +123,28 @@ namespace Character_Counter___array
 
         private void HandleTheFile(char[] chars)
         {
-            CharacterFrequencyObjectArray = new CharacterFrequency[127];
-            char[] charsInFile = chars;
-            var freq = new int[25];
-            //for (int i = 0; i < chars.Length; i++)
+            CharacterFrequencyObjectArray = new CharacterFrequency[chars.Length];
+            CharacterFrequency characterFrequencyObject;
             int i = 0;
-            char oneChar = chars[i];
-            
-            while (chars.Length > 0)
+            foreach (char aChar in chars)
             {
-                CharacterFrequency characterFrequencyObject = new CharacterFrequency(oneChar);
-                CharacterFrequencyObjectArray[i] = characterFrequencyObject;
-                Console.Write(chars[0] + " = ");
-                int cal = 0;
-                for (int j = 0; j < chars.Length; j++)
+                characterFrequencyObject = new CharacterFrequency();
+                // get the ASCII value of aChar and use it as the index
+                int charToCheckIndex = (int) aChar;
+                for (i = 0; i < chars.Length; i++)
                 {
-                    if (chars[0] == chars[j])
+                    // look for matching 
+                    if ((int) chars[i] == charToCheckIndex)
                     {
-                        cal++;
-                        i++;
-                        characterFrequencyObject.IncrementFrequency(cal);
+                        characterFrequencyObject.Frequency++;
                     }
                 }
+                //characterFrequencyObject = new CharacterFrequency(chars[i]);
+                CharacterFrequencyObjectArray[i] = characterFrequencyObject;
+                i++;
             }
+
             TheUserInterface.DisplayOutput(CharacterFrequencyObjectArray);
-
-            //{
-            //    char oneChar = chars[i];
-            //    CharacterFrequency characterFrequencyObject = new CharacterFrequency(oneChar);
-            //    CharacterFrequencyObjectArray[i] = characterFrequencyObject;
-
-            //    try
-            //    {
-            //        ++freq[charsInFile[i]];
-            //        characterFrequencyObject.IncrementFrequency(freq, i);
-
-            //    }
-            //    catch (IndexOutOfRangeException ex)
-            //    {
-            //        Console.WriteLine(ex.Message);
-            //    }
-
-            //}
-
-
 
         }
     }

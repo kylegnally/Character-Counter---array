@@ -34,9 +34,9 @@ namespace Character_Counter___array
             return false;
         }
 
-        public void IncrementFrequency(int i)
+        public void IncrementFrequency()
         {
-            Frequency = Frequency + i;
+            Frequency = Frequency + 1;
         }
 
         public override string ToString()
