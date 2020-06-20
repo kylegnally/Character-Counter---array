@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 
 namespace Character_Counter___array
@@ -123,21 +124,25 @@ namespace Character_Counter___array
 
         private void HandleTheFile(char[] chars)
         {
-            char[] foundChars;
-            CharacterFrequencyObjectArray = new CharacterFrequency[255];
-            CharacterFrequency characterFrequencyObject = new CharacterFrequency();
+            char[] foundChars = new char[256];
+            CharacterFrequencyObjectArray = new CharacterFrequency[256];
+            CharacterFrequency characterFrequencyObject;
             
-            int i = 0;
             foreach (char aChar in chars)
             {
-                int asciiVal = (int) aChar;
-                foreach (CharacterFrequency charFreq in CharacterFrequencyObjectArray)
+                for (int i = 0; i < CharacterFrequencyObjectArray.Length; i++)
                 {
-                    if (charFreq[asciiVal] == null)
+                    int asciiVal = (int) aChar;
+                    if (CharacterFrequencyObjectArray[asciiVal] == null)
                     {
                         CharacterFrequencyObjectArray[asciiVal] = new CharacterFrequency(aChar);
+                        break;
                     }
-                    else if (asciiVal == charFreq.ASCII) charFreq.IncrementFrequency();
+                    else if (CharacterFrequencyObjectArray[asciiVal].Equals(aChar))
+                    {
+                        CharacterFrequencyObjectArray[asciiVal].IncrementFrequency();
+                        break;
+                    }
                 }
             }
 
