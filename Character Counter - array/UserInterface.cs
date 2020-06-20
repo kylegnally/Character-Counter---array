@@ -46,11 +46,15 @@ namespace Character_Counter___array
         {
             foreach (CharacterFrequency oneCharFreqObj in freqArray)
             {
-                var storedChar = oneCharFreqObj.Character;
-                Output += String.Format("\n{0}\t{1}\t{2}",
-                    oneCharFreqObj.Character.ToString(),
-                    (int) storedChar,
-                    oneCharFreqObj.Frequency.ToString());
+                if (oneCharFreqObj != null)
+                {
+                    var storedChar = oneCharFreqObj.Character;
+                    Output = String.Format("{0}\t{1}\t{2}",
+                        oneCharFreqObj.Character.ToString(),
+                        (int)storedChar,
+                        oneCharFreqObj.Frequency.ToString());
+                    Console.WriteLine(Output);
+                }
             }
             Console.WriteLine("End of program.");
             Environment.Exit(0);

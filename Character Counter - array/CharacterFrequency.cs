@@ -14,11 +14,16 @@ namespace Character_Counter___array
 
         public int Frequency { get; set; }
 
+        public int ASCII { get; set; }
+
         public CharacterFrequency() { }
 
         public CharacterFrequency(char charToCheck)
         {
             Character = charToCheck;
+            int _ascii = (int) charToCheck;
+            ASCII = _ascii;
+            IncrementFrequency();
         }
 
         public bool Equals(char charToCheck)

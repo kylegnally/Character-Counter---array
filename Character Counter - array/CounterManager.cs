@@ -123,22 +123,45 @@ namespace Character_Counter___array
 
         private void HandleTheFile(char[] chars)
         {
-            CharacterFrequencyObjectArray = new CharacterFrequency[chars.Length];
-            CharacterFrequency characterFrequencyObject;
+            char[] foundChars;
+            CharacterFrequencyObjectArray = new CharacterFrequency[255];
+            CharacterFrequency characterFrequencyObject = new CharacterFrequency();
+            
             int i = 0;
             foreach (char aChar in chars)
             {
-                characterFrequencyObject = new CharacterFrequency();
                 // get the ASCII value of aChar and use it as the index
                 int charToCheckIndex = (int) aChar;
-                for (i = 0; i < chars.Length; i++)
+                if (CharacterFrequencyObjectArray[charToCheckIndex] == null)
                 {
-                    // look for matching 
-                    if ((int) chars[i] == charToCheckIndex)
-                    {
-                        characterFrequencyObject.Frequency++;
-                    }
+                    characterFrequencyObject = new CharacterFrequency(aChar);
+                    //characterFrequencyObject.IncrementFrequency();
+                    CharacterFrequencyObjectArray[charToCheckIndex] = characterFrequencyObject;
                 }
+                else
+                {
+                    foreach (CharacterFrequency freq in CharacterFrequencyObjectArray)
+                    {
+                        if (freq != null && (int)aChar == freq.ASCII) freq.IncrementFrequency();
+                    }
+                    //for (i = 0; i < CharacterFrequencyObjectArray.Length; i++)
+                    //{
+                    //    while (CharacterFrequencyObjectArray[i] != null)
+                    //    {
+
+                    //    }
+                    //    if ((int)aChar == characterFrequencyObject.ASCII)
+                    //    {
+                    //        characterFrequencyObject.IncrementFrequency();
+                    //    }
+                    //    //if ((int)chars[i] == charToCheckIndex)
+                    //    //{
+                    //    //    characterFrequencyObject = new CharacterFrequency(chars[i]);
+                    //    //    characterFrequencyObject.Frequency++;
+                    //    //}
+                    //}
+                }
+                
                 //characterFrequencyObject = new CharacterFrequency(chars[i]);
                 CharacterFrequencyObjectArray[i] = characterFrequencyObject;
                 i++;
