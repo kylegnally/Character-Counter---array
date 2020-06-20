@@ -11,8 +11,8 @@ namespace Character_Counter___array     // "__" ..really? this isn't php!
         static void Main(string[] args)
         {
 #if DEBUG
-            //args = new[] { "wap.txt", "out.txt" };
-            args = new[] { "testfile.txt" };
+            args = new[] { "wap.txt" };
+            //args = new[] { "testfile.txt" };
             #endif
             CounterManager capp = new CounterManager(args);
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,8 +50,31 @@ namespace Character_Counter___array
                 if (oneCharFreqObj != null)
                 {
                     var storedChar = oneCharFreqObj.Character;
+                    string name;
+                    string charString = oneCharFreqObj.Character.ToString();
+                    int asciiVal = (int) oneCharFreqObj.Character;
+
+                    switch (asciiVal)
+                    {
+                        case 32:
+                            name = "[SPACE]";
+                            break;
+                        case 9:
+                            name = "[TAB]";
+                            break;
+                        case 13:
+                            name = "[LF]";
+                            break;
+                        case 10:
+                            name = "[CR]";
+                            break;
+                        default:
+                            name = charString;
+                            break;
+
+                    }
                     Output = String.Format("{0}\t{1}\t{2}",
-                        oneCharFreqObj.Character.ToString(),
+                        name,
                         (int)storedChar,
                         oneCharFreqObj.Frequency.ToString());
                     Console.WriteLine(Output);
