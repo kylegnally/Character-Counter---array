@@ -12,7 +12,7 @@ namespace Character_Counter___array     // "__" ..really? this isn't php!
         {
 #if DEBUG
             //args = new[] { "wap.txt", "out.txt" };
-            args = new[] { "testfile.txt" };
+            args = new[] { "wp.txt" };
             #endif
             CounterManager capp = new CounterManager(args);
         }

@@ -25,7 +25,7 @@ namespace Character_Counter___array
         /// The required array of CharacterFrequency objects.
         /// </summary>
 
-        public CharacterFrequency[] CharacterFrequencyObjectArray;
+        public CharacterFrequency[] FrequencyObjectCollection;
 
 
         ///// <summary>
@@ -115,59 +115,45 @@ namespace Character_Counter___array
         /// <param name="file"></param>
         private void ProcessFile(StreamReader file)
         {
-            char[] chars;
             string contents = file.ReadToEnd();
-            chars = contents.ToCharArray();
-            HandleTheFile(chars);
+            var foundCharacterArray = contents.ToCharArray();
+            HandleTheFile(foundCharacterArray);
         }
 
-        private void HandleTheFile(char[] chars)
+        private void HandleTheFile(char[] foundCharacterArray)
         {
-            char[] foundChars;
-            CharacterFrequencyObjectArray = new CharacterFrequency[255];
-            CharacterFrequency characterFrequencyObject = new CharacterFrequency();
+            FrequencyObjectCollection = new CharacterFrequency[255]; 
+            CharacterFrequency frequencyObject = new CharacterFrequency();
             
             int i = 0;
-            foreach (char aChar in chars)
-            {
-                // get the ASCII value of aChar and use it as the index
-                int charToCheckIndex = (int) aChar;
-                if (CharacterFrequencyObjectArray[charToCheckIndex] == null)
+            //while (i < foundCharacterArray.Length)
+            //{
+                foreach (char thisCharacter in foundCharacterArray)
                 {
-                    characterFrequencyObject = new CharacterFrequency(aChar);
-                    //characterFrequencyObject.IncrementFrequency();
-                    CharacterFrequencyObjectArray[charToCheckIndex] = characterFrequencyObject;
-                }
-                else
-                {
-                    foreach (CharacterFrequency freq in CharacterFrequencyObjectArray)
+                    // get the ASCII value of aChar and use it as the index
+                    int charToCheckIndex = (int)thisCharacter;
+                    if (FrequencyObjectCollection[charToCheckIndex] == null)
                     {
-                        if (freq != null && (int)aChar == freq.ASCII) freq.IncrementFrequency();
+                        frequencyObject = new CharacterFrequency(thisCharacter);
+                        FrequencyObjectCollection[charToCheckIndex] = frequencyObject;
                     }
-                    //for (i = 0; i < CharacterFrequencyObjectArray.Length; i++)
-                    //{
-                    //    while (CharacterFrequencyObjectArray[i] != null)
-                    //    {
+                    else
+                    {
 
-                    //    }
-                    //    if ((int)aChar == characterFrequencyObject.ASCII)
-                    //    {
-                    //        characterFrequencyObject.IncrementFrequency();
-                    //    }
-                    //    //if ((int)chars[i] == charToCheckIndex)
-                    //    //{
-                    //    //    characterFrequencyObject = new CharacterFrequency(chars[i]);
-                    //    //    characterFrequencyObject.Frequency++;
-                    //    //}
-                    //}
+                        if (FrequencyObjectCollection[charToCheckIndex] != null
+                            && (int) thisCharacter == FrequencyObjectCollection[charToCheckIndex].ASCII)
+                            FrequencyObjectCollection[charToCheckIndex].Frequency++;
+
+                        FrequencyObjectCollection[i] = frequencyObject;
+                        i++;
+                    }
                 }
-                
-                //characterFrequencyObject = new CharacterFrequency(chars[i]);
-                CharacterFrequencyObjectArray[i] = characterFrequencyObject;
-                i++;
-            }
 
-            TheUserInterface.DisplayOutput(CharacterFrequencyObjectArray);
+            //}
+
+            int xi = 0;
+
+            TheUserInterface.DisplayOutput(FrequencyObjectCollection);
 
         }
     }
