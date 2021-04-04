@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 
 namespace Character_Counter___array
@@ -25,7 +24,7 @@ namespace Character_Counter___array
         /// The required array of CharacterFrequency objects.
         /// </summary>
 
-        public CharacterFrequency[] FrequencyObjectCollection;
+        public CharacterObject[] CharacterObjectCollection;
 
 
         ///// <summary>
@@ -109,10 +108,6 @@ namespace Character_Counter___array
             }
         }
 
-        /// <summary>
-        /// Method to process the input file.
-        /// </summary>
-        /// <param name="file"></param>
         private void ProcessFile(StreamReader file)
         {
             string contents = file.ReadToEnd();
@@ -122,38 +117,34 @@ namespace Character_Counter___array
 
         private void HandleTheFile(char[] foundCharacterArray)
         {
-            FrequencyObjectCollection = new CharacterFrequency[255]; 
-            CharacterFrequency frequencyObject = new CharacterFrequency();
+            CharacterObjectCollection = new CharacterObject[255]; 
+            CharacterObject characterObject = new CharacterObject();
             
             int i = 0;
-            //while (i < foundCharacterArray.Length)
-            //{
+            while (i < foundCharacterArray.Length)
+            {
                 foreach (char thisCharacter in foundCharacterArray)
                 {
-                    // get the ASCII value of aChar and use it as the index
                     int charToCheckIndex = (int)thisCharacter;
-                    if (FrequencyObjectCollection[charToCheckIndex] == null)
+                    if (CharacterObjectCollection[charToCheckIndex] == null)
                     {
-                        frequencyObject = new CharacterFrequency(thisCharacter);
-                        FrequencyObjectCollection[charToCheckIndex] = frequencyObject;
+                        characterObject = new CharacterObject(thisCharacter);
+                        CharacterObjectCollection[charToCheckIndex] = characterObject;
+                        characterObject.IncrementFrequency();
                     }
                     else
                     {
-
-                        if (FrequencyObjectCollection[charToCheckIndex] != null
-                            && (int) thisCharacter == FrequencyObjectCollection[charToCheckIndex].ASCII)
-                            FrequencyObjectCollection[charToCheckIndex].Frequency++;
-
-                        FrequencyObjectCollection[i] = frequencyObject;
-                        i++;
+                        if ((int)thisCharacter == CharacterObjectCollection[charToCheckIndex].ASCII)
+                            CharacterObjectCollection[charToCheckIndex].IncrementFrequency();
                     }
-                }
 
-            //}
+                    i++;
+                }
+            }
 
             int xi = 0;
 
-            TheUserInterface.DisplayOutput(FrequencyObjectCollection);
+            TheUserInterface.DisplayOutput(CharacterObjectCollection);
 
         }
     }

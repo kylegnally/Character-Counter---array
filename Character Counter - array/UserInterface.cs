@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Character_Counter___array
 {
@@ -11,7 +7,7 @@ namespace Character_Counter___array
     {
         public string Output { get; set; }
 
-        private string Convert(CharacterFrequency[] freq)
+        private string Convert(CharacterObject[] freq)
         {
             string freqAsString = "";
             // string conversion
@@ -46,10 +42,11 @@ namespace Character_Counter___array
             }
         }
 
-        public void DisplayOutput(CharacterFrequency[] freqArray)
+        public void DisplayOutput(CharacterObject[] freqArray)
         {
+            Console.WriteLine("CHARACTER\tASCII\tAMOUNT");
             // fix this, it's causing the repeats!
-            foreach (CharacterFrequency oneCharFreqObj in freqArray)
+            foreach (CharacterObject oneCharFreqObj in freqArray)
             {
                 if (oneCharFreqObj != null)
                 {
