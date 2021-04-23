@@ -13,18 +13,22 @@ namespace Character_Counter___array
         /// <summary>
         /// The user interface. In this program it doesn't handle any user input. 
         /// </summary>
-        private UserInterface TheUserInterface { get; }
+        private UserInterface TheUserInterface => _theUserInterface;
 
         /// <summary>
         /// Property to store the current directory as a string.
         /// </summary>
-        private string CurrentDir { get; }
+        private string CurrentDir => _currentDir;
+
+        private FileHandler _aFile;
 
         /// <summary>
         /// The required array of CharacterFrequency objects.
         /// </summary>
-
         public CharacterObject[] CharacterObjectCollection;
+
+        private readonly UserInterface _theUserInterface;
+        private readonly string _currentDir;
 
 
         ///// <summary>
@@ -39,7 +43,9 @@ namespace Character_Counter___array
         /// <param name="args"></param>
         public CounterManager(string[] args)
         {
-            TheUserInterface = new UserInterface();
+            _currentDir = Environment.CurrentDirectory;
+            _theUserInterface = new UserInterface();
+
             if (args.Length > 1)
             {
                 // ordinarily we would allow for writing of the finished product to a file.
@@ -58,10 +64,10 @@ namespace Character_Counter___array
             }
 
             // TheUserInterface = new UserInterface();
-            CurrentDir = Environment.CurrentDirectory;
             ReadFile(args);
             Environment.Exit(0);
         }
+
         /// <summary>
         /// Method to read the file from the current directory.
         /// Includes exception types. Assigns the appropriate exception
@@ -77,11 +83,8 @@ namespace Character_Counter___array
                 {
                     try
                     {
-                        string fullPath = CurrentDir + "\\" + args[0];
-                        using (StreamReader reader = new StreamReader(fullPath))
-                        {
-                            ProcessFile(reader);
-                        }
+                        _aFile = new FileHandler(args[0]);
+                        HandleTheFile(_aFile.Output);
                     }
                     catch
                     {
@@ -106,13 +109,6 @@ namespace Character_Counter___array
                 ex = typeof(ArgumentNullException);
                 TheUserInterface.ExceptionMessageOutput(ex);
             }
-        }
-
-        private void ProcessFile(StreamReader file)
-        {
-            string contents = file.ReadToEnd();
-            var foundCharacterArray = contents.ToCharArray();
-            HandleTheFile(foundCharacterArray);
         }
 
         private void HandleTheFile(char[] foundCharacterArray)
@@ -142,10 +138,52 @@ namespace Character_Counter___array
                 }
             }
 
-            int xi = 0;
+            //CullTheNulls(CharacterObjectCollection);
 
-            TheUserInterface.DisplayOutput(CharacterObjectCollection);
+            Console.WriteLine();
 
+            ConsoleKey response;
+            do
+            {
+                Console.Write($"Would you like to sort this list [y/N] ? ");
+                response = Console.ReadKey(false).Key;
+                if (response == ConsoleKey.Y)
+                {
+                    Sort aSort = new Sort(CullTheNulls());
+                }
+                else if (response == ConsoleKey.N) TheUserInterface.DisplayOutput(CharacterObjectCollection);
+            } 
+            while (response != ConsoleKey.Y);
+
+        }
+
+        private CharacterObject[] CullTheNulls()
+        {
+            CharacterObject[] culled;
+            int culledLength = 0;
+            int j = 0;
+
+            foreach (CharacterObject member in CharacterObjectCollection)
+            {
+                if (member != null) culledLength++;
+            }
+
+            culled = new CharacterObject[culledLength];
+
+            // does not work. Fix!
+            //for (int i = 0; i <= culledLength; i++)
+            //{
+            //    foreach (CharacterObject characterObject in CharacterObjectCollection)
+            //    {
+            //        if (characterObject != null)
+            //        {
+            //            culled[j] = new CharacterObject(CharacterObjectCollection[i].Character);
+            //            j++;
+            //        }
+            //    }
+            //}
+
+            return culled;
         }
     }
 }

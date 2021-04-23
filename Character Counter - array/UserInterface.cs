@@ -44,7 +44,7 @@ namespace Character_Counter___array
 
         public void DisplayOutput(CharacterObject[] freqArray)
         {
-            Console.WriteLine("CHARACTER\tASCII\tAMOUNT");
+            Console.WriteLine("CHAR\tASCII\tAMOUNT");
             // fix this, it's causing the repeats!
             foreach (CharacterObject oneCharFreqObj in freqArray)
             {

@@ -45,8 +45,11 @@
   <ItemGroup>
     <Compile Include="CharacterObject.cs" />
     <Compile Include="CounterManager.cs" />
+    <Compile Include="Example.cs" />
+    <Compile Include="FileHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sort.cs" />
     <Compile Include="UnsupportedArgsException.cs" />
     <Compile Include="UserInterface.cs" />
   </ItemGroup>
